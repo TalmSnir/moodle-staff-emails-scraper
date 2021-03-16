@@ -4,6 +4,8 @@ from selenium.webdriver.common.keys import Keys
 import re
 import csv
 
+# !uncomment the line below and line 104 to enable writing to google drive sheet
+# import sheet
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -13,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 chrome_options = Options()
 chrome_options.add_experimental_option("excludeSwitches", ['enable-logging'])
 driver = webdriver.Chrome(
-    'staff_emails_scraper\chromedriver.exe', options=chrome_options)
+    'chromedriver.exe', options=chrome_options)
 driver.maximize_window()
 
 
@@ -97,15 +99,19 @@ def course_scraper(driver):
                 teacher_email_address = re.findall(
                     '[^:]+@+\S+', teacher_email_a.get_attribute("href"))
                 writer.writerow([teacher_name, teacher_email_address[0]])
+
+                #! uncomment the line below and change the sheet.py at the  correct places to write the data to google drive sheet
+                # sheet.write_to_sheet(teacher_name, teacher_email_address[0])
+
                 driver.close()
                 driver.switch_to_window(course_win)
             driver.back()
 
 
 # *enter your login info and remove the comments
-# username = ''
-# user_id = ''
-# user_password = ''
+username = 'talsnir1'
+user_id = '203436449'
+user_password = 'Yk121212'
 
 navigating_to_login_page(driver)
 driver.implicitly_wait(5)
