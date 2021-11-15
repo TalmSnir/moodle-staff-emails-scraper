@@ -109,9 +109,9 @@ def course_scraper(driver):
 
 
 # *enter your login info and remove the comments
-username = 'talsnir1'
-user_id = '203436449'
-user_password = 'Yk121212'
+username = 'your_Moodle_username' 
+user_id = 'your_Moodle_id'
+user_password = 'your_Moodle_password'
 
 navigating_to_login_page(driver)
 driver.implicitly_wait(5)
